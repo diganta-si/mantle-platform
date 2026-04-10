@@ -10,6 +10,8 @@ platform-backend/.mvn/wrapper/maven-wrapper.jar
 platform-frontend/node_modules/
 platform-frontend/dist/
 platform-frontend/.vite/
+# TypeScript build info
+*.tsbuildinfo
 
 # ─── IntelliJ IDEA ──────────────────────────────────────────
 .idea/
