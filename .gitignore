@@ -1,0 +1,28 @@
+# ─── Java / Maven ───────────────────────────────────────────
+platform-backend/target/
+platform-backend/.mvn/wrapper/maven-wrapper.jar
+*.class
+*.jar
+*.war
+*.ear
+
+# ─── Node / React ───────────────────────────────────────────
+platform-frontend/node_modules/
+platform-frontend/dist/
+platform-frontend/.vite/
+
+# ─── IntelliJ IDEA ──────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ─── OS ─────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Environment / Secrets ──────────────────────────────────
+.env
+.env.local
+.env.*.local
