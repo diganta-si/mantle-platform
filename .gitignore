@@ -6,12 +6,20 @@ platform-backend/.mvn/wrapper/maven-wrapper.jar
 *.war
 *.ear
 
+
 # ─── Node / React ───────────────────────────────────────────
 platform-frontend/node_modules/
 platform-frontend/dist/
 platform-frontend/.vite/
+
+# Vite scaffold leftovers
+platform-frontend/src/App.css
+platform-frontend/src/assets/react.svg
+platform-frontend/src/assets/vite.svg
+
 # TypeScript build info
 *.tsbuildinfo
+
 
 # ─── IntelliJ IDEA ──────────────────────────────────────────
 .idea/
