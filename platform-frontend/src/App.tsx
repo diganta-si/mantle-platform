@@ -1,44 +1,63 @@
-import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-
-type FetchState =
-    | { status: "loading" }
-    | { status: "success"; message: string }
-    | { status: "error"; error: string };
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { LoginPage } from '@/pages/auth/LoginPage'
+import { RegisterPage } from '@/pages/auth/RegisterPage'
+import { DashboardPage } from '@/pages/dashboard/DashboardPage'
+import { SubOrgPage } from '@/pages/suborg/SubOrgPage'
+import { ProjectPage } from '@/pages/project/ProjectPage'
+import { AppPage } from '@/pages/app/AppPage'
+import { MembersPage } from '@/pages/members/MembersPage'
+import { AcceptInvitePage } from '@/pages/invite/AcceptInvitePage'
+import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 
 export default function App() {
-  const [state, setState] = useState<FetchState>({ status: "loading" });
-
-  useEffect(() => {
-    fetch("/api/hello")
-        .then((res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.text();
-        })
-        .then((message) => setState({ status: "success", message }))
-        .catch((err: unknown) =>
-            setState({
-              status: "error",
-              error: err instanceof Error ? err.message : "Unknown error",
-            })
-        );
-  }, []);
-
   return (
-      <main className="min-h-screen flex items-center justify-center bg-white">
-        <Card className="w-full max-w-md">
-          <CardContent>
-            {state.status === "loading" && (
-                <p className="text-muted-foreground text-sm">Loading...</p>
-            )}
-            {state.status === "success" && (
-                <p className="text-foreground text-lg font-medium">{state.message}</p>
-            )}
-            {state.status === "error" && (
-                <p className="text-destructive text-sm">Error: {state.error}</p>
-            )}
-          </CardContent>
-        </Card>
-      </main>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/invite/:inviteId" element={<AcceptInvitePage />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/suborgs/:subOrgId"
+          element={
+            <ProtectedRoute>
+              <SubOrgPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/projects/:projectId"
+          element={
+            <ProtectedRoute>
+              <ProjectPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/apps/:appId"
+          element={
+            <ProtectedRoute>
+              <AppPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orgs/:orgId/members"
+          element={
+            <ProtectedRoute>
+              <MembersPage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  )
 }

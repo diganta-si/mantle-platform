@@ -1,13 +1,11 @@
 package com.acuityspace.mantle;
 
+import com.acuityspace.mantle.config.TestContainersBase;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class MantleApplicationTests {
+class MantleApplicationTests extends TestContainersBase {
 
     @Test
     void contextLoads() {
     }
-
 }
